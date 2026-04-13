@@ -1,0 +1,48 @@
+[project]
+name = "vietfrontier"
+version = "0.1.0"
+description = "Terminal efficient-frontier explorer for Vietnamese equities."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pandas>=2.2.3",
+    "numpy>=1.26",
+    "rich>=14.0.0",
+    "questionary>=2.1.0",
+    "plotext>=5.3.2",
+    "pyportfolioopt>=1.5.5",
+    "vnstock>=3.2.6",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.5",
+    "vulture>=2.14",
+]
+
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vietfrontier*"]
+
+[project.scripts]
+vietfrontier = "main:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.vulture]
+paths = ["vietfrontier", "tests", "main.py"]
+exclude = ["vietfrontier/__pycache__", "tests/__pycache__", ".venv"]
+min_confidence = 80

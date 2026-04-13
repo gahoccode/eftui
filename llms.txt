@@ -1,0 +1,27 @@
+# vietfrontier
+
+Terminal efficient-frontier explorer for Vietnamese equities.
+
+## Entry point
+- `main.py` → `vietfrontier.bootstrap.build_application().run()`
+- CLI: `uv run vietfrontier`
+
+## Layout
+- `vietfrontier/models.py` — PortfolioRequest, OptimizationResult, FrontierData, PromptAction, PortfolioDataError, OptimizationError
+- `vietfrontier/services/price_loader.py` — PriceHistoryLoader (vnstock → wide close-price DataFrame)
+- `vietfrontier/services/optimizer.py` — PortfolioOptimizer (return models, risk models, objectives, frontier sweep, Monte Carlo)
+- `vietfrontier/ui/prompts.py` — PromptSession (questionary flow, return/risk model picks, conditional EMA span prompt, flat 10-option scatter colormap picker)
+- `vietfrontier/ui/report.py` — RichPortfolioReport (weights + performance tables)
+- `vietfrontier/renderers/frontier_renderer.py` — PlotextFrontierRenderer (efficient frontier scatter + horizontal weight bar chart for HRP)
+- `vietfrontier/controller.py` — AppController (run loop)
+- `vietfrontier/bootstrap.py` — DI wiring
+
+## Runtime deps
+pandas, numpy, rich, questionary, plotext, pyportfolioopt, vnstock
+
+## Docs
+- PyPortfolioOpt: https://pyportfolioopt.readthedocs.io/
+- plotext: https://github.com/piccolomo/plotext
+- vnstock: https://github.com/thinh-vu/vnstock
+- Matplotlib colormap reference: https://matplotlib.org/stable/gallery/color/colormap_reference.html
+- Matplotlib named colors: https://matplotlib.org/stable/gallery/color/named_colors.html
